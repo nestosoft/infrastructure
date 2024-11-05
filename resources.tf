@@ -25,6 +25,15 @@ data "aws_availability_zones" "available" {
 
 # }
 
+locals {
+  common_tags = {
+    Name         = "nestosoft-dev"
+    Environnment = var.environment
+    Billing_code = var.billing_code
+  }
+}
+
+
 module "main" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.15.0"
@@ -42,7 +51,7 @@ module "main" {
 
   enable_nat_gateway = false
 
-  tags = var.common_tags
+  tags = local.common_tags
 }
 
 resource "aws_security_group" "ingress" {
@@ -62,7 +71,7 @@ resource "aws_security_group" "ingress" {
   name                   = "no-ingress-sg"
   name_prefix            = null
   revoke_rules_on_delete = null
-  tags                   = var.common_tags
+  tags                   = local.common_tags
   tags_all               = {}
   vpc_id                 = module.main.vpc_id
 }

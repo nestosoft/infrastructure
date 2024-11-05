@@ -29,10 +29,13 @@ variable "public_subnets" {
   }
 }
 
-variable "common_tags" {
-  type        = map(string)
-  description = "(Optional) Map of commong tags"
-  default = {
-    Name = "nestosoft-dev"
-  }
+variable "environment" {
+  type        = string
+  description = "(Optional) Environment"
+  default     = "development"
+}
+
+variable "billing_code" {
+  type        = string
+  description = "(Required) Billing code for network resources"
 }
