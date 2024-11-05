@@ -1,7 +1,21 @@
 # data from testing
 cloud_formation_template/*.txt
 
-# .terraform
-.terraform/*
-terraform.tfstate
-terraform.tfstate.backup
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
+# .tfplan files
+*.tfplan
+
+# .pem files
+*.pem
+
+# terraform backend
+backend_local.tf
