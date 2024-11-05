@@ -35,16 +35,6 @@ variable "environment" {
   default     = "development"
 }
 
-variable "common_tags" {
-  type        = map(string)
-  description = "(Optional) Map of commong tags"
-  default = {
-    Name         = "nestosoft-dev"
-    Environnment = var.environment
-    Billing_code = var.billing_code
-  }
-}
-
 variable "billing_code" {
   type        = string
   description = "(Required) Billing code for network resources"
