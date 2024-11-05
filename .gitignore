@@ -3,6 +3,5 @@ cloud_formation_template/*.txt
 
 # .terraform
 .terraform/*
-.terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
