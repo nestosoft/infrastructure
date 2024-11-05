@@ -30,9 +30,9 @@ variable "public_subnets" {
 }
 
 variable "common_tags" {
-    type = map(string)
-    description = "(Optional) Map of commong tags"
-    default = {
-        Name = "nestosoft-dev"
-    }
+  type        = map(string)
+  description = "(Optional) Map of commong tags"
+  default = {
+    Name = "nestosoft-dev"
+  }
 }
