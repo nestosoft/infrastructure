@@ -27,7 +27,7 @@ data "aws_availability_zones" "available" {
 
 locals {
   common_tags = {
-    Name         = "nestosoft-dev"
+    Name         = "nestosoft-network"
     Environnment = var.environment
     Billing_code = var.billing_code
   }
