@@ -1,4 +1,4 @@
-name: 'Terraform for network'
+name: 'Terraform'
 
 on: push
 
