@@ -27,7 +27,7 @@ data "aws_availability_zones" "available" {
 
 locals {
   common_tags = {
-    Name         = "nestosoft-network"
+    Name         = "nestosoft-network-${var.environment}"
     Environnment = var.environment
     Billing_code = var.billing_code
   }
@@ -68,7 +68,7 @@ resource "aws_security_group" "ingress" {
     to_port          = 0
   }]
   ingress                = []
-  name                   = "no-ingress-sg"
+  name                   = "${var.prefix}-no-ingress-sg"
   name_prefix            = null
   revoke_rules_on_delete = null
   tags                   = local.common_tags
