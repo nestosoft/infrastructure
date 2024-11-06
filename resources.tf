@@ -27,13 +27,10 @@ data "aws_availability_zones" "available" {
 
 locals {
   common_tags = {
-    Name         = "nestosoft-network"
+    Name         = "nestosoft-network-${var.environment}"
     Environnment = var.environment
     Billing_code = var.billing_code
   }
-
-  name_prefix = "${var.prefix}-${var.environment}"
-
 }
 
 
@@ -41,7 +38,7 @@ module "main" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.15.0"
 
-  name = local.name_prefix
+  name = var.prefix
   cidr = var.cidr_block
 
   azs                     = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -49,7 +46,7 @@ module "main" {
   public_subnet_names     = [for k, v in var.public_subnets : "${var.prefix}-${k}"]
   enable_dns_hostnames    = true
   public_subnet_suffix    = ""
-  public_route_table_tags = { Name = "${local.name_prefix}-public" }
+  public_route_table_tags = { Name = "${var.prefix}-public" }
   map_public_ip_on_launch = true
 
   enable_nat_gateway = false
@@ -71,7 +68,7 @@ resource "aws_security_group" "ingress" {
     to_port          = 0
   }]
   ingress                = []
-  name                   = "${local.name_prefix}-no-ingress-sg"
+  name                   = "${var.prefix}-no-ingress-sg"
   name_prefix            = null
   revoke_rules_on_delete = null
   tags                   = local.common_tags
